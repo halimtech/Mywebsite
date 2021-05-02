@@ -1,0 +1,2 @@
+export const avatarLink = "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Red&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Brown"
+export const options = { day: 'numeric', month: 'long', year: 'numeric' } as any
