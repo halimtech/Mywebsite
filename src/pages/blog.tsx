@@ -12,6 +12,7 @@ import {
 import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
 import BlogAuthor from "../components/BlogAuthor"
+import NextLink from "next/link"
 
 interface blogProps {
 
@@ -44,7 +45,7 @@ export async function getStaticProps() {
 
 const blog = ({ posts }) => {
     return (
-        <div>
+        <>
             <header><NavBar /></header>
             <div >
                 {
@@ -66,16 +67,18 @@ const blog = ({ posts }) => {
                                     zIndex="2"
                                     marginLeft={{ base: '0', sm: '5%' }}
                                     marginTop="5%">
-                                    <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                        <Image
-                                            borderRadius="lg"
-                                            src={
-                                                post.picture
-                                            }
-                                            alt={post.title}
-                                            objectFit="contain"
-                                        />
-                                    </Link>
+                                    <NextLink href={`/posts/${post.id}`}>
+                                        <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                                            <Image
+                                                borderRadius="lg"
+                                                src={
+                                                    post.picture
+                                                }
+                                                alt={post.title}
+                                                objectFit="contain"
+                                            />
+                                        </Link>
+                                    </NextLink>
                                 </Box>
                                 <Box zIndex="1" width="100%" position="absolute" height="100%">
                                     <Box
@@ -96,9 +99,11 @@ const blog = ({ posts }) => {
                                 justifyContent="center"
                                 marginTop={{ base: '3', sm: '0' }}>
                                 <Heading marginTop="1">
-                                    <Link textDecoration="none" color="cyan.500" _hover={{ textDecoration: 'none' }}>
-                                        {post.title}
-                                    </Link>
+                                    <NextLink href={`/posts/${post.id}`}>
+                                        <Link textDecoration="none" color="cyan.500" _hover={{ textDecoration: 'none' }}>
+                                            {post.title}
+                                        </Link>
+                                    </NextLink>
                                 </Heading>
                                 <Text
                                     as="p"
@@ -115,7 +120,7 @@ const blog = ({ posts }) => {
             </div>
 
             <footer><Footer /></footer>
-        </div >
+        </ >
     )
 }
 

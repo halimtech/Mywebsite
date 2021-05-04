@@ -21,9 +21,6 @@ const NavBar = (props: any) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     let body = (
         <>
-            <NextLink href="/">
-                <Link color="white">Home</Link>
-            </NextLink>
             <NextLink href="/blog">
                 <Link color="white">Blog</Link>
             </NextLink>

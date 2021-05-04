@@ -14,7 +14,7 @@ const Index = () => {
       <NavBar />
       <Flex as="footer" py="8rem">
 
-        sd
+
       </Flex>
 
       <Footer />
