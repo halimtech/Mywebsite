@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import BlogAuthor from "../../components/BlogAuthor"
+
 
 
 
@@ -30,18 +30,26 @@ const getPost = gql`query getPost($id: String!){
 
 
 
-const showPost: NextPage<{ id: string }> = ({ id }) => {
+const showPost: any = ({ id }) => { //NextPage<{ id: string }> 
 
 
     const { loading, error, data } = useQuery(getPost, {
         variables: { id },
 
     });
-    if (loading) return null;
+    const orangeColor = useColorModeValue(
+        'radial(orange.600 1px, transparent 1px)',
+        'radial(orange.300 1px, transparent 1px)'
+    )
+    const blackColor = useColorModeValue('black.700', 'black.200')
+
+    //console.log(data);
+
+    if (loading) return <p>Loading........</p>;
     if (error) return `Error! ${error}`;
     if (!data.post) { return 404 }
 
-    console.log(data);
+
     return (<>
         <NavBar />
 
@@ -78,10 +86,7 @@ const showPost: NextPage<{ id: string }> = ({ id }) => {
             </Box>
             <Box zIndex="1" width="100%" position="absolute" height="100%">
                 <Box
-                    bgGradient={useColorModeValue(
-                        'radial(orange.600 1px, transparent 1px)',
-                        'radial(orange.300 1px, transparent 1px)'
-                    )}
+                    bgGradient={orangeColor}
                     backgroundSize="20px 20px"
                     opacity="0.4"
                     height="100%"
@@ -92,7 +97,7 @@ const showPost: NextPage<{ id: string }> = ({ id }) => {
         <Box mt="5%">
             <Text
                 as="p"
-                color={useColorModeValue('black.700', 'black.200')}
+                color={blackColor}
                 fontSize="2xl"
                 align="center"
             >

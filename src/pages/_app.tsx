@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
           }}
         >
           <Component {...pageProps} />
+
         </ColorModeProvider>
       </ChakraProvider>
     </ApolloProvider>
