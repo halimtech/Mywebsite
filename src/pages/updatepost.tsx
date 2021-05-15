@@ -32,15 +32,20 @@ const CreatePost: React.FC<{}> = ({ }) => {
             <Formik initialValues={{ title: "", text: "", picture: "", pass: "", id: "" }}
                 onSubmit={async (values, { setErrors }) => {
                     //console.log(values);
-                    updatePost({
-                        variables: {
-                            id: values.id,
-                            title: values.title,
-                            text: values.text,
-                            picture: values.picture,
-                            pass: values.pass
-                        }
-                    })
+                    try {
+                        await updatePost({
+                            variables: {
+                                id: values.id,
+                                title: values.title,
+                                text: values.text,
+                                picture: values.picture,
+                                pass: values.pass
+                            }
+                        })
+                    } catch (e) {
+                        console.log(e);
+
+                    }
                     router.push("/blog")
                 }}>
 

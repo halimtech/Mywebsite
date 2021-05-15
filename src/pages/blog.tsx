@@ -50,7 +50,7 @@ const blog = ({ posts }) => {
             <header><NavBar /></header>
 
             {
-                posts.map(post =>
+                posts.slice().reverse().map(post =>
                     <Box
                         key={post.id}
                         marginTop={{ base: '1', sm: '5' }}

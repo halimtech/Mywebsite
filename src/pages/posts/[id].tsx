@@ -94,7 +94,7 @@ const showPost: any = ({ id }) => { //NextPage<{ id: string }>
             </Box>
         </Box>
 
-        <Box mt="5%">
+        <Box mt="5%" mb="45vh">
             <Text
                 as="p"
                 color={blackColor}

@@ -28,8 +28,7 @@ const CreatePost: React.FC<{}> = ({ }) => {
             <Wrapper variant="small">
                 <Formik initialValues={{ title: "", text: "", author: "Abdelhalim", picture: "", pass: "" }}
                     onSubmit={async (values, { setErrors }) => {
-                        //console.log(values);
-                        createPost({
+                        await createPost({
                             variables: {
                                 input: {
                                     title: values.title,
@@ -102,4 +101,4 @@ const CreatePost: React.FC<{}> = ({ }) => {
     )
 }
 
-export default CreatePost
+export default CreatePost  //console.log(values);

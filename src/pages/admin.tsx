@@ -49,6 +49,24 @@ const CreatePost: React.FC<{}> = ({ }) => {
                     </Form>
                 )}
             </Formik>
+            <Formik
+                initialValues={{}}
+                onSubmit={async () => {
+
+                    router.push("/deletepost")
+                }}>
+
+                {({ isSubmitting }) => (
+                    <Form>
+
+                        <Button mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
+                            Go to Delete post
+                        </Button>
+
+
+                    </Form>
+                )}
+            </Formik>
         </Wrapper>
 
     )
