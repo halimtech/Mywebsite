@@ -8,7 +8,9 @@ import {
   Image,
   Heading,
   Avatar,
-  Grid, GridItem
+  Grid,
+  GridItem,
+  Link
 } from '@chakra-ui/react';
 import { apolloCli } from "../utils/apolloConn"
 import { gql } from "@apollo/client"
@@ -23,6 +25,7 @@ export async function getStaticProps() {
     id
     title
     text
+    link
     picture
     createdAt
   }
@@ -51,6 +54,7 @@ const Index = ({ projects }) => {
             {
               projects.map(project =>
 
+
                 <Box
                   key={project.id}
                   maxW={'445px'}
@@ -61,35 +65,37 @@ const Index = ({ projects }) => {
                   mr={"2em"}
                   p={6}
                   overflow={'hidden'}>
-                  <Box
-                    h={'210px'}
-                    bg={'gray.100'}
-                    mt={-6}
-                    mx={-6}
-                    mb={6}
-                    pos={'unset'}>
-                    <Image
-                      src={
-                        project.picture
-                      }
-                      layout={'fill'}
-                    />
-                  </Box>
+                  <Link href={project.link} isExternal>
+                    <Box
+                      h={'210px'}
+                      bg={'gray.100'}
+                      mt={-6}
+                      mx={-6}
+                      mb={6}
+                      pos={'unset'}>
+                      <Image
+                        src={
+                          project.picture
+                        }
+                        layout={'fill'}
+                      />
+                    </Box>
 
-                  <Stack mt={'6em'}>
-                    <Heading
-                      color={useColorModeValue('gray.700', 'white')}
-                      fontSize={'2xl'}
-                      fontFamily={'body'}>
-                      {project.title}
-                    </Heading>
-                    <Text color={'gray.500'}>
-                      {project.text}
-                    </Text>
-                  </Stack>
+                    <Stack mt={'6em'}>
+                      <Heading
+                        color={useColorModeValue('gray.700', 'white')}
+                        fontSize={'2xl'}
+                        fontFamily={'body'}>
+                        {project.title}
+                      </Heading>
+                      <Text color={'gray.500'}>
+                        {project.text}
+                      </Text>
+                    </Stack>
 
-
+                  </Link>
                 </Box>
+
 
               )}
           </Grid>

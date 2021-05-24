@@ -11,10 +11,6 @@ import NextLink from "next/link"
 const createproject = gql`mutation createproject($input:ProjectInput!, $pass:String!){
     createProject(input:$input, pass:$pass){
       id
-      title
-      text
-      picture
-      createdAt
     }
   }`
 
@@ -25,18 +21,19 @@ const CreateProject: React.FC<{}> = ({ }) => {
     return (
         <>
             <Wrapper variant="small">
-                <Formik initialValues={{ title: "", text: "", picture: "", pass: "" }}
+                <Formik initialValues={{ title: "", link: "", text: "", picture: "", pass: "" }}
                     onSubmit={async (values, { setErrors }) => {
                         await createProject({
                             variables: {
                                 input: {
                                     title: values.title,
                                     text: values.text,
-                                    picture: values.picture
+                                    picture: values.picture,
+                                    link: values.link
                                 }, pass: values.pass
                             }
                         })
-                        router.push("/blog")
+                        router.push("/")
                     }}>
                     {({ isSubmitting }) => (
                         <Form>
@@ -53,6 +50,15 @@ const CreateProject: React.FC<{}> = ({ }) => {
                                     label="Text"
                                     required={true}
                                     placeholder="text..."
+                                />
+                            </Box>
+
+                            <Box mt={4}>
+                                <InputField
+                                    name="link"
+                                    label="Link"
+                                    required={true}
+                                    placeholder="link..."
                                 />
                             </Box>
 

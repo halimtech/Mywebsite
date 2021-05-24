@@ -5,19 +5,20 @@ import { InputField } from '../components/InputField'
 import { Wrapper } from '../components/Wrapper'
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router"
-import NavBar from '../components/NavBar'
 import NextLink from "next/link"
 
 const updateproject = gql`mutation updateproject($picture:String!,
 $title:String!,
 $text:String!,
  $pass:String!,
+ $link:String,
  $id:Float!){
-    updateProject(title:$title,picture:$picture,text:$text,id:$id, pass:$pass){
+    updateProject(title:$title,picture:$picture,text:$text,id:$id,link:$link pass:$pass){
       id
       title
       text
       picture
+      link
       createdAt
     }
   }`
@@ -28,7 +29,7 @@ const UpdateProject: React.FC<{}> = ({ }) => {
 
     return (<>
         <Wrapper variant="small">
-            <Formik initialValues={{ title: "", text: "", picture: "", pass: "", id: "" }}
+            <Formik initialValues={{ title: "", text: "", link: "", picture: "", pass: "", id: "" }}
                 onSubmit={async (values, { setErrors }) => {
                     //console.log(values);
                     try {
@@ -69,6 +70,13 @@ const UpdateProject: React.FC<{}> = ({ }) => {
                                 name="picture"
                                 label="Picture"
                                 placeholder="picture..."
+                            />
+                        </Box>
+                        <Box mt={4}>
+                            <InputField
+                                name="link"
+                                label="Link"
+                                placeholder="link..."
                             />
                         </Box>
                         <Box mt={4}>
