@@ -9,21 +9,22 @@ import { useRouter } from "next/router"
 import NavBar from '../components/NavBar'
 import NextLink from "next/link"
 
-const deletePost = gql`mutation deletepost($id:Float!,$pass:String!){
-    deletePost(id:$id, pass:$pass)
+const deleteProject = gql`mutation deleteProject($id:Float!,$pass:String!){
+    deleteproject(id:$id, pass:$pass)
   }`
 
-const DeletePost: React.FC<{}> = ({ }) => {
+const DeleteProject: React.FC<{}> = ({ }) => {
     const router = useRouter();
-    const [deletepost, { data }] = useMutation(deletePost);
+    const [deleteproject, { data }] = useMutation(deleteProject);
 
     return (
         <>
+
             <Wrapper variant="small">
                 <Formik initialValues={{ id: 0, pass: "" }}
                     onSubmit={async (values, { setErrors }) => {
                         try {
-                            deletepost({
+                            deleteproject({
                                 variables: {
 
                                     id: values.id,
@@ -32,9 +33,9 @@ const DeletePost: React.FC<{}> = ({ }) => {
                             })
                         } catch (e) {
                             console.log(e);
-                            router.push("/blog")
+                            router.push("/")
                         }
-                        router.push("/blog")
+                        router.push("/")
                     }}>
                     {({ isSubmitting }) => (
                         <Form>
@@ -42,7 +43,7 @@ const DeletePost: React.FC<{}> = ({ }) => {
                                 name="id"
                                 label="ID"
                                 required={true}
-                                placeholder="Post ID"
+                                placeholder="Project ID"
                                 type="number"
                             />
                             <Box mt={4}>
@@ -55,8 +56,8 @@ const DeletePost: React.FC<{}> = ({ }) => {
                                 />
                             </Box>
 
-                            <Button mr={225} mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
-                                delete post
+                            <Button mr={223} mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
+                                delete project
                         </Button>
                             <NextLink href="/admin">
                                 <Link color="messenger.900">admin</Link>
@@ -77,4 +78,4 @@ try {
 
 }
 
-export default DeletePost
+export default DeleteProject

@@ -8,8 +8,8 @@ import { useRouter } from "next/router"
 import NavBar from '../components/NavBar'
 import NextLink from "next/link"
 
-const createpost = gql`mutation createpost($input:PostInput!, $pass:String!){
-    createPost(input:$input, pass:$pass){
+const createproject = gql`mutation createproject($input:ProjectInput!, $pass:String!){
+    createProject(input:$input, pass:$pass){
       id
       title
       text
@@ -18,21 +18,20 @@ const createpost = gql`mutation createpost($input:PostInput!, $pass:String!){
     }
   }`
 
-const CreatePost: React.FC<{}> = ({ }) => {
+const CreateProject: React.FC<{}> = ({ }) => {
     const router = useRouter();
-    const [createPost, { data }] = useMutation(createpost);
+    const [createProject, { data }] = useMutation(createproject);
 
     return (
         <>
             <Wrapper variant="small">
-                <Formik initialValues={{ title: "", text: "", author: "Abdelhalim", picture: "", pass: "" }}
+                <Formik initialValues={{ title: "", text: "", picture: "", pass: "" }}
                     onSubmit={async (values, { setErrors }) => {
-                        await createPost({
+                        await createProject({
                             variables: {
                                 input: {
                                     title: values.title,
                                     text: values.text,
-                                    author: values.author,
                                     picture: values.picture
                                 }, pass: values.pass
                             }
@@ -67,15 +66,6 @@ const CreatePost: React.FC<{}> = ({ }) => {
                             </Box>
                             <Box mt={4}>
                                 <InputField
-                                    name="author"
-                                    label="Author"
-
-                                    required={true}
-                                    placeholder="author..."
-                                />
-                            </Box>
-                            <Box mt={4}>
-                                <InputField
                                     name="pass"
                                     label="Password"
                                     type="password"
@@ -84,8 +74,8 @@ const CreatePost: React.FC<{}> = ({ }) => {
                                 />
                             </Box>
 
-                            <Button mr={225} mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
-                                create post
+                            <Button mr={223} mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
+                                create project
                         </Button>
                             <NextLink href="/admin">
                                 <Link color="messenger.900">admin</Link>
@@ -100,4 +90,4 @@ const CreatePost: React.FC<{}> = ({ }) => {
     )
 }
 
-export default CreatePost  //console.log(values);
+export default CreateProject  //console.log(values);

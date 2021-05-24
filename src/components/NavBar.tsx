@@ -8,6 +8,8 @@ import {
     useDisclosure,
     useColorModeValue,
     Stack,
+    useColorMode,
+    Button
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import NextLink from "next/link"
@@ -18,7 +20,8 @@ interface NavBarProps {
 }
 
 const NavBar = (props: any) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { colorMode, toggleColorMode } = useColorMode()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     let body = (
         <>
             <NextLink href="/blog">
@@ -32,7 +35,7 @@ const NavBar = (props: any) => {
 
     return (
         <>
-            <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+            <Box bg={useColorModeValue('gray.400', 'gray.900')} px={4}>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <IconButton
                         size={'md'}
@@ -56,8 +59,11 @@ const NavBar = (props: any) => {
                             display={{ base: 'none', md: 'flex' }}>
                             {body}
                         </HStack>
-                    </HStack>
+                    </HStack><Button onClick={toggleColorMode}>
+                        {colorMode === "light" ? "🌙" : "☀"}
+                    </Button>
                 </Flex>
+
 
                 {isOpen ? (
                     <Box pb={5}>

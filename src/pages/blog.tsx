@@ -47,8 +47,6 @@ export async function getStaticProps() {
 const blog = ({ posts }) => {
     return (
         <>
-            <header><NavBar /></header>
-
             {
                 posts.slice().reverse().map(post =>
                     <Box
@@ -83,7 +81,6 @@ const blog = ({ posts }) => {
                     </Box>
                 )}
 
-            <footer><Footer /></footer>
         </ >
     )
 }

@@ -8,12 +8,12 @@ import { useRouter } from "next/router"
 import NavBar from '../components/NavBar'
 import NextLink from "next/link"
 
-const updatepost = gql`mutation updatepost($picture:String!,
+const updateproject = gql`mutation updateproject($picture:String!,
 $title:String!,
 $text:String!,
  $pass:String!,
  $id:Float!){
-    updatePost(title:$title,picture:$picture,text:$text,id:$id, pass:$pass){
+    updateProject(title:$title,picture:$picture,text:$text,id:$id, pass:$pass){
       id
       title
       text
@@ -22,9 +22,9 @@ $text:String!,
     }
   }`
 
-const UpdatePost: React.FC<{}> = ({ }) => {
+const UpdateProject: React.FC<{}> = ({ }) => {
     const router = useRouter();
-    const [updatePost, { data }] = useMutation(updatepost);
+    const [updateProject, { data }] = useMutation(updateproject);
 
     return (<>
         <Wrapper variant="small">
@@ -32,7 +32,7 @@ const UpdatePost: React.FC<{}> = ({ }) => {
                 onSubmit={async (values, { setErrors }) => {
                     //console.log(values);
                     try {
-                        await updatePost({
+                        await updateProject({
                             variables: {
                                 id: values.id,
                                 title: values.title,
@@ -45,7 +45,7 @@ const UpdatePost: React.FC<{}> = ({ }) => {
                         console.log(e);
 
                     }
-                    router.push("/blog")
+                    router.push("/")
                 }}>
 
                 {({ isSubmitting }) => (
@@ -91,8 +91,8 @@ const UpdatePost: React.FC<{}> = ({ }) => {
                             />
                         </Box>
 
-                        <Button mr={225} mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
-                            Update post
+                        <Button mr={215} mt={4} type="submit" isLoading={isSubmitting} colorScheme="messenger">
+                            Update project
                         </Button>
                         <NextLink href="/admin">
                             <Link color="messenger.900">admin</Link>
@@ -107,4 +107,4 @@ const UpdatePost: React.FC<{}> = ({ }) => {
     )
 }
 
-export default UpdatePost
+export default UpdateProject

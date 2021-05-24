@@ -51,8 +51,6 @@ const showPost: any = ({ id }) => { //NextPage<{ id: string }>
 
 
     return (<>
-        <NavBar />
-
         <Box
             display="flex"
             flex="1"
@@ -106,7 +104,6 @@ const showPost: any = ({ id }) => { //NextPage<{ id: string }>
         </Box>
 
 
-        <Footer />
     </>
     )
 }

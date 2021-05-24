@@ -1,5 +1,7 @@
 import { ApolloProvider } from '@apollo/client'
-import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeProvider, ColorModeScript } from '@chakra-ui/react'
+import Footer from '../components/Footer'
+import NavBar from '../components/NavBar'
 import theme from '../theme'
 import { apolloCli } from '../utils/apolloConn'
 
@@ -8,16 +10,14 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={apolloCli}>
       <ChakraProvider resetCSS theme={theme}>
-        <ColorModeProvider
-          options={{
-            useSystemColorMode: true,
-          }}
-        >
-          <Component {...pageProps} />
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <NavBar />
 
-        </ColorModeProvider>
+        <Component {...pageProps} />
+
+        <Footer />
       </ChakraProvider>
-    </ApolloProvider>
+    </ApolloProvider >
   )
 }
 
