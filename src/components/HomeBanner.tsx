@@ -74,7 +74,7 @@ const HomeBanner = (props: any) => {
                     </Stack>
                 </Stack>
             </Flex>
-            <Flex flex={1} display={{ base: "none", sm: "flex" }}>
+            <Flex flex={1} display={{ base: "none", md: "flex" }}>
                 <Image
 
                     alt={'Login Image'}
