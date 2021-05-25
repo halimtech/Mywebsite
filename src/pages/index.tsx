@@ -40,6 +40,7 @@ export async function getStaticProps() {
     }
   }
 }
+
 const Index = ({ projects }) => {
   return (
     <>
