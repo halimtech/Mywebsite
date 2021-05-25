@@ -1,6 +1,6 @@
 import React from 'react'
 import { apolloCli } from "../utils/apolloConn"
-import { gql, useQuery } from "@apollo/client"
+import { gql } from "@apollo/client"
 import {
     Box,
     Heading,
@@ -14,63 +14,40 @@ import Footer from '../components/Footer'
 import BlogAuthor from "../components/BlogAuthor"
 import NextLink from "next/link"
 import SidePicBack from '../components/SidePicBack';
-import ClientOnly from '../components/ClientOnly';
 
 interface blogProps {
 
 }
 
-// export async function getServerSideProps() {
-//     const { data } =
-//         await apolloCli.query({
-//             query: gql`
-//     query GetPosts {
-//     posts{
-//       id
-//       title
-//       text
-//       picture
-//       createdAt
-//       author
-//     }
-//   }
-//     `
-//         })
-
-
-//     return {
-//         props: {
-//             posts: data.posts
-//         }
-//     }
-// }
-const QUERY = gql`
-query GetPosts {
-posts{
-  id
-  title
-  text
-  picture
-  createdAt
-  author
-}
-}
-`
-
-const blog = () => {
-    const { data, loading, error } = useQuery(QUERY)
-    if (loading) {
-        return <h2>Loading...</h2>
+export async function getServerSideProps() {
+    const { data } =
+        await apolloCli.query({
+            query: gql`
+    query GetPosts {
+    posts{
+      id
+      title
+      text
+      picture
+      createdAt
+      author
     }
+  }
+    `
+        })
 
-    if (error) {
-        console.error(error)
-        return null
+
+    return {
+        props: {
+            posts: data.posts
+        }
     }
-    const posts = data.posts
+}
 
+
+const blog = ({ posts }) => {
     return (
-        <ClientOnly>
+        <>
             {
                 posts.slice().reverse().map(post =>
                     <Box
@@ -105,7 +82,7 @@ const blog = () => {
                     </Box>
                 )}
 
-        </ClientOnly >
+        </ >
     )
 }
 

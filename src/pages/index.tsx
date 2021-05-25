@@ -13,59 +13,36 @@ import {
   Link
 } from '@chakra-ui/react';
 import { apolloCli } from "../utils/apolloConn"
-import { gql, useQuery } from "@apollo/client"
+import { gql } from "@apollo/client"
 import HomeBanner from '../components/HomeBanner';
-import ClientOnly from '../components/ClientOnly';
 
-// export async function getServerSideProps() {
-//   const { data } =
-//     await apolloCli.query({
-//       query: gql`
-//   query GetProjects {
-//   projects{
-//     id
-//     title
-//     text
-//     link
-//     picture
-//     createdAt
-//   }
-// }
-//   `
-//     })
-
-
-//   return {
-//     props: {
-//       projects: data.projects
-//     }
-//   }
-// }
-
-const QUERY = gql`
-query GetProjects {
-projects{
-  id
-  title
-  text
-  link
-  picture
-  createdAt
-}
-}
-`
-
-const Index = () => {
-  const { data, loading, error } = useQuery(QUERY)
-  if (loading) {
-    return <h2>Loading...</h2>
+export async function getServerSideProps() {
+  const { data } =
+    await apolloCli.query({
+      query: gql`
+  query GetProjects {
+  projects{
+    id
+    title
+    text
+    link
+    picture
+    createdAt
   }
+}
+  `
+    })
 
-  if (error) {
-    console.error(error)
-    return null
+
+  return {
+    props: {
+      projects: data.projects
+    }
   }
-  const projects = data.projects
+}
+
+
+const Index = ({ projects }) => {
   return (
     <>
       <HomeBanner title1={"I'm Abdelhalim"}
@@ -76,55 +53,53 @@ const Index = () => {
       <section id="projects">
         <Flex padding={"1em"} marginTop={"2em"}>
           <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-            <ClientOnly>
-              {
-                projects.map(project =>
+            {
+              projects.map(project =>
 
 
-                  <Box
-                    key={project.id}
-                    maxW={'445px'}
-                    w={'100%'}
-                    bg={useColorModeValue('white', 'gray.900')}
-                    boxShadow={'2xl'}
-                    rounded={'md'}
-                    mr={"2em"}
-                    p={6}
-                    overflow={'hidden'}>
-                    <Link href={project.link} isExternal>
-                      <Box
-                        h={'210px'}
-                        bg={'gray.100'}
-                        mt={-6}
-                        mx={-6}
-                        mb={6}
-                        pos={'unset'}>
-                        <Image
-                          src={
-                            project.picture
-                          }
-                          layout={'fill'}
-                        />
-                      </Box>
+                <Box
+                  key={project.id}
+                  maxW={'445px'}
+                  w={'100%'}
+                  bg={useColorModeValue('white', 'gray.900')}
+                  boxShadow={'2xl'}
+                  rounded={'md'}
+                  mr={"2em"}
+                  p={6}
+                  overflow={'hidden'}>
+                  <Link href={project.link} isExternal>
+                    <Box
+                      h={'210px'}
+                      bg={'gray.100'}
+                      mt={-6}
+                      mx={-6}
+                      mb={6}
+                      pos={'unset'}>
+                      <Image
+                        src={
+                          project.picture
+                        }
+                        layout={'fill'}
+                      />
+                    </Box>
 
-                      <Stack mt={'6em'}>
-                        <Heading
-                          color={useColorModeValue('gray.700', 'white')}
-                          fontSize={'2xl'}
-                          fontFamily={'body'}>
-                          {project.title}
-                        </Heading>
-                        <Text color={'gray.500'}>
-                          {project.text}
-                        </Text>
-                      </Stack>
+                    <Stack mt={'6em'}>
+                      <Heading
+                        color={useColorModeValue('gray.700', 'white')}
+                        fontSize={'2xl'}
+                        fontFamily={'body'}>
+                        {project.title}
+                      </Heading>
+                      <Text color={'gray.500'}>
+                        {project.text}
+                      </Text>
+                    </Stack>
 
-                    </Link>
-                  </Box>
+                  </Link>
+                </Box>
 
 
-                )}
-            </ClientOnly>
+              )}
           </Grid>
         </Flex>
 
