@@ -27,7 +27,7 @@ const NavBar = (props: any) => {
     let body = (
         <>
             <NextLink href="/blog">
-                <Link color="white">Blog</Link>
+                <Link color="white" _hover={{ textDecoration: 'none' }}>Blog</Link>
             </NextLink>
 
         </>

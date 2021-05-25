@@ -67,7 +67,7 @@ const Index = ({ projects }) => {
                   mr={"2em"}
                   p={6}
                   overflow={'hidden'}>
-                  <Link href={project.link} isExternal>
+                  <Link href={project.link} _hover={{ textDecoration: 'none' }} isExternal>
                     <Box
                       h={'210px'}
                       bg={'gray.100'}

@@ -53,6 +53,7 @@ const blog = ({ posts }) => {
                     <Box
                         key={post.id}
                         marginTop={{ base: '1', sm: '5' }}
+                        pl={"2"}
                         display="flex"
                         flexDirection={{ base: 'column', sm: 'row' }}
                         justifyContent="space-between">
@@ -75,8 +76,10 @@ const blog = ({ posts }) => {
                                 marginTop="2"
                                 color={useColorModeValue('black.700', 'black.200')}
                                 fontSize="xl">
-                                {post.text}
+                                {post.text.slice(0, 120)}<Link href={`/posts/${post.id}`}
+                                    color={useColorModeValue('cyan.500', 'cyan.300')} _hover={{ textDecoration: 'none' }}> ...read more</Link>
                             </Text>
+
                             <BlogAuthor name={post.author} date={post.createdAt} />
                         </Box>
                     </Box>
