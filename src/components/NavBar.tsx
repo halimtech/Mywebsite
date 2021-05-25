@@ -18,7 +18,9 @@ import Image from "next/image"
 interface NavBarProps {
 
 }
-
+{/* <NextLink href="/lebenslauf.pdf">
+                <Link color="white">Resume</Link>
+            </NextLink> */}
 const NavBar = (props: any) => {
     const { colorMode, toggleColorMode } = useColorMode()
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,9 +29,7 @@ const NavBar = (props: any) => {
             <NextLink href="/blog">
                 <Link color="white">Blog</Link>
             </NextLink>
-            <NextLink href="/lebenslauf.pdf">
-                <Link color="white">Resume</Link>
-            </NextLink>
+
         </>
     )
 

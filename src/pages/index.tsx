@@ -16,7 +16,7 @@ import { apolloCli } from "../utils/apolloConn"
 import { gql } from "@apollo/client"
 import HomeBanner from '../components/HomeBanner';
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { data } =
     await apolloCli.query({
       query: gql`
