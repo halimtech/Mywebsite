@@ -19,7 +19,7 @@ interface blogProps {
 
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const { data } =
         await apolloCli.query({
             query: gql`
