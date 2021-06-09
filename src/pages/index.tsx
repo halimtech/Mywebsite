@@ -3,11 +3,9 @@ import {
   useColorModeValue,
   Text,
   Box,
-  Center,
   Flex,
   Image,
   Heading,
-  Avatar,
   Grid,
   GridItem,
   Link
@@ -15,6 +13,7 @@ import {
 import { apolloCli } from "../utils/apolloConn"
 import { gql } from "@apollo/client"
 import HomeBanner from '../components/HomeBanner';
+import { NextSeo } from 'next-seo';
 
 export async function getStaticProps() {
   const { data } =
@@ -45,6 +44,25 @@ export async function getStaticProps() {
 const Index = ({ projects }) => {
   return (
     <>
+      <NextSeo
+        title="Halimtech | webdev"
+        description="I'm Abdelhalim, aspiring web developer and a friend. Catch the blog for my updates"
+        canonical="https://halim.tech"
+        openGraph={{
+          url: 'https://halim.tech',
+          title: "Halimtech | webdev",
+          description: "I'm Abdelhalim, aspiring web developer and a friend. Catch the blog for my updates",
+          images: [
+            {
+              url: 'https://cdn.discordapp.com/attachments/715202493059039284/851463778910076968/unknown.png',
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+            },
+          ],
+          site_name: 'Halimtech',
+        }}
+      />
       <HomeBanner title1={"I'm Abdelhalim"}
         title2={"Full-stack Developer"}
         content={"Information systems engineering student and an aspiring fullstack developer"}

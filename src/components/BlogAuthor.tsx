@@ -17,7 +17,7 @@ const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
             {props.name ? <Image
                 borderRadius="full"
                 boxSize="40px"
-                src="/halim2.jpg"
+                src="/halim2.png"
                 alt={`Avatar of ${props.name}`}
             /> : null}
             <Text fontWeight="medium">{props.name}</Text>

@@ -1,9 +1,6 @@
-import { Box, Button } from '@chakra-ui/react'
-import { Formik, Form } from 'formik'
+import { Button } from '@chakra-ui/react'
 import React from 'react'
-import { InputField } from '../components/InputField'
 import { Wrapper } from '../components/Wrapper'
-import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router"
 import Link from 'next/link'
 

@@ -5,15 +5,13 @@ import {
     Box,
     Heading,
     Link,
-    Image,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
 import BlogAuthor from "../components/BlogAuthor"
 import NextLink from "next/link"
 import SidePicBack from '../components/SidePicBack';
+import { NextSeo } from 'next-seo';
 
 interface blogProps {
 
@@ -48,6 +46,25 @@ export async function getStaticProps() {
 const blog = ({ posts }) => {
     return (
         <>
+            <NextSeo
+                title="Halim's Blog"
+                description="This is the place where I dumb all my ideas and thoughts with no filter"
+                canonical="https://halim.tech/blog"
+                openGraph={{
+                    url: 'https://halim.tech/blog',
+                    title: "Halim's blog",
+                    description: 'This is the place where I dumb all my ideas and thoughts with no filter',
+                    images: [
+                        {
+                            url: 'https://cdn.discordapp.com/attachments/715202493059039284/852137702560104458/unknown.png',
+                            width: 800,
+                            height: 600,
+                            alt: 'Og Image Alt',
+                        },
+                    ],
+                    site_name: 'Halimtech',
+                }}
+            />
             {
                 posts.slice().reverse().map(post =>
                     <Box

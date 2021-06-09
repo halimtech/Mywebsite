@@ -5,7 +5,6 @@ import { InputField } from '../components/InputField'
 import { Wrapper } from '../components/Wrapper'
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router"
-import NavBar from '../components/NavBar'
 import NextLink from "next/link"
 
 const createpost = gql`mutation createpost($input:PostInput!, $pass:String!){

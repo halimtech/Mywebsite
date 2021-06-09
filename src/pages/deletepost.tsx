@@ -1,4 +1,3 @@
-
 import { Box, Button, Link } from '@chakra-ui/react'
 import { Formik, Form } from 'formik'
 import React from 'react'
@@ -6,7 +5,6 @@ import { InputField } from '../components/InputField'
 import { Wrapper } from '../components/Wrapper'
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router"
-import NavBar from '../components/NavBar'
 import NextLink from "next/link"
 
 const deletePost = gql`mutation deletepost($id:Float!,$pass:String!){
