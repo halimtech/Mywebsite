@@ -29,6 +29,7 @@ const SocialButton = ({
     label: string;
     href: string;
 }) => {
+    
     return (
         <chakra.button
             bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
@@ -52,6 +53,8 @@ const SocialButton = ({
 };
 
 const Footer: React.FC<FooterProps> = ({ }) => {
+    const year = new Date().getFullYear()
+    
     return (
         <Box
             mt="20vh"
@@ -66,7 +69,7 @@ const Footer: React.FC<FooterProps> = ({ }) => {
                 justify={{ base: 'center', md: 'space-between' }}
                 align={{ base: 'center', md: 'center' }}>
                 <Logo />
-                <Text>© 2021 Halimtech</Text>
+                <Text>© {year} Halimtech</Text>
                 <Stack direction={'row'} spacing={6}>
                     <SocialButton label={'Twitter'} href={'https://twitter.com/halimtech1'}>
                         <FaTwitter />
